@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://www.github.com/mvz/mdv"
 
   s.executables = ['mdv']
-  s.files = Dir['{lib,test}/**/*.rb', "bin/*", "README.md", "LICENSE"]
+  s.files = Dir['{lib,test}/**/*.rb', "bin/*", "*.md", "LICENSE"]
   s.test_files = Dir['test/**/*.rb']
 
   s.add_dependency('gir_ffi-gtk', ["~> 0.4.0"])
