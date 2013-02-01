@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib,test}/**/*.rb', "bin/*", "*.md", "LICENSE"]
   s.test_files = Dir['test/**/*.rb']
 
-  s.add_dependency('gir_ffi-gtk', ["~> 0.4.0"])
+  s.add_dependency('gir_ffi-gtk', ["~> 0.5.0"])
   s.add_dependency('github-markup', ["~> 0.7.2"])
 end
