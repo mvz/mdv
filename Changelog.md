@@ -1,3 +1,7 @@
+### 0.1.2 / 2013-06-15
+
+* Update dependencies
+
 ### 0.1.1 / 2013-02-09
 
 * Update dependencies
