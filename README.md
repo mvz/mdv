@@ -14,4 +14,5 @@ Press Ctrl-R to reload, Ctrl-Q to quit.
 
 ## License
 
-Copyright (c) 2012 Matijs van Zuijlen. See LICENSE for details.
+Copyright &copy; 2012&ndash;2014 [Matijs van Zuijlen](http://www.matijs.net).
+See LICENSE for details.

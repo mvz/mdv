@@ -1,3 +1,8 @@
+### 0.1.3 / 2014-01-24
+
+* Update dependencies
+* Add rake tasks
+
 ### 0.1.2 / 2013-06-15
 
 * Update dependencies
