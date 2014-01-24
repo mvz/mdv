@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency('gir_ffi-gtk', ["~> 0.7.0"])
   s.add_dependency('github-markup', ["~> 1.0.0"])
+  s.add_development_dependency("rake", ["~> 10.1.1"])
 end
