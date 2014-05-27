@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "mdv"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.summary = "Simple Markdown Viewer"
   s.description = "Quickly view markdown files on GNOME"

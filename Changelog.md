@@ -1,3 +1,9 @@
+### 0.1.4 / 2014-05-27
+
+* Use semantic versioning for dependencies
+* Make sure a markdown implementation is present
+* Update github-markup dependency to pull in posix-spawn
+
 ### 0.1.3 / 2014-01-24
 
 * Update dependencies
