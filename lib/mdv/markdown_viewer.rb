@@ -1,5 +1,5 @@
 require 'gir_ffi-gtk3'
-GirFFI.setup :WebKit, '3.0'
+GirFFI.setup :WebKit2, '4.0'
 
 module MDV
   # Markdown viewer window class
@@ -55,7 +55,7 @@ module MDV
     end
 
     def web_view
-      @wv ||= WebKit::WebView.new
+      @wv ||= WebKit2::WebView.new
     end
 
     def fullpath
@@ -71,7 +71,7 @@ module MDV
     end
 
     def reload
-      web_view.load_string html, nil, nil, base_uri
+      web_view.load_html html, base_uri
     end
   end
 end
