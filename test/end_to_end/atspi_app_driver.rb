@@ -22,6 +22,7 @@ module AtspiAccessiblePatches
 
   def inspect_recursive level = 0, maxlevel = 4
     each_child do |child|
+      next unless child
       puts "#{'  ' * level} > name: #{child.name}; role: #{child.role}"
       child.inspect_recursive(level + 1) unless level >= maxlevel
     end
@@ -33,34 +34,44 @@ Atspi::Accessible.include AtspiAccessiblePatches
 # Test driver for the Atspi-enabled applications. Takes care of boot and
 # shutdown, and provides a handle on the GUI's main UI frame.
 class AppDriver
-  def initialize app_name
+  def initialize app_name, verbose: false
     @app_file = "bin/#{app_name}"
     @lib_dir = 'lib'
     @app_name = app_name
     @pid = nil
     @killed = false
+    @verbose = verbose
   end
 
-  def boot timeout: 10, arguments: []
+  def boot test_timeout: 30, exit_timeout: 10, arguments: []
     raise 'Already booted' if @pid
+    if @verbose
+      warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
+    end
     @pid = Process.spawn "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
 
     @killed = false
     @cleanup = false
 
-    Thread.new do
-      ((timeout - 1) * 10).times do
+    @thread = Thread.new do
+      count = 0
+      (test_timeout * 10).times do
+        count += 1
         break if @cleanup
         sleep 0.1
       end
+      warn "Waited #{count * 0.1} seconds for test to be done" if @verbose
 
-      10.times do
+      count = 0
+      (exit_timeout * 10).times do
+        count += 1
         break unless @pid
         sleep 0.1
       end
+      warn "Waited #{count * 0.1} seconds for pid to go away" if @verbose
 
       if @pid
-        warn "About to kill child process #{@pid}"
+        warn "About to kill child process #{@pid}" if @verbose
         @killed = true
         Process.kill 'KILL', @pid
       end
@@ -74,10 +85,9 @@ class AppDriver
   end
 
   def cleanup
-    return unless @pid
-    @cleanup = true
-    _, status = Process.wait2 @pid
+    status = exit_status
     @pid = nil
+    @thread.join if @thread
     status
   end
 
@@ -105,7 +115,8 @@ class AppDriver
   end
 
   def try_repeatedly
-    10.times.each do |num|
+    # Try for about 12 seconds
+    50.times.each do |num|
       result = yield
       return result if result
       sleep_time = 0.01 * (num + 1)
@@ -113,4 +124,13 @@ class AppDriver
     end
     yield
   end
+
+  def exit_status
+    return unless @pid
+    @cleanup = true
+    _, status = Process.wait2 @pid
+    status
+    return status
+  end
+
 end
