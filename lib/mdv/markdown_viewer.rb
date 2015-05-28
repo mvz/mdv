@@ -1,6 +1,8 @@
 require 'gir_ffi-gtk3'
 GirFFI.setup :WebKit, '3.0'
+
 module MDV
+  # Markdown viewer window class
   class MarkdownViewer
     attr_reader :file
 
