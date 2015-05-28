@@ -46,36 +46,22 @@ class AppDriver
   def boot(test_timeout: 30, exit_timeout: 10, arguments: [])
     raise 'Already booted' if @pid
 
-    command = "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
-    warn "About to spawn: `#{command}`" if @verbose
-    @pid = Process.spawn command
+    spawn_process(arguments)
 
     @killed = false
     @cleanup = false
 
     @thread = Thread.new do
-      count = 0
-      (test_timeout * 10).times do
-        count += 1
-        break if @cleanup
-        sleep 0.1
-      end
-      warn "Waited #{count * 0.1} seconds for test to be done" if @verbose
-
-      count = 0
-      (exit_timeout * 10).times do
-        count += 1
-        break unless @pid
-        sleep 0.1
-      end
-      warn "Waited #{count * 0.1} seconds for pid to go away" if @verbose
-
-      if @pid
-        warn "About to kill child process #{@pid}" if @verbose
-        @killed = true
-        Process.kill 'KILL', @pid
-      end
+      wait_for('test to be done', test_timeout) { @cleanup }
+      wait_for('pid to go away', exit_timeout) { !@pid }
+      kill_process if @pid
     end
+  end
+
+  def spawn_process(arguments)
+    command = "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
+    log "About to spawn: `#{command}`"
+    @pid = Process.spawn command
   end
 
   def press_ctrl_q
@@ -104,6 +90,26 @@ class AppDriver
   end
 
   private
+
+  def wait_for(description, timeout)
+    count = 0
+    (timeout * 10).times do
+      count += 1
+      break if yield
+      sleep 0.1
+    end
+    log "Waited #{count * 0.1} seconds for #{description}"
+  end
+
+  def kill_process
+    log "About to kill child process #{@pid}"
+    @killed = true
+    Process.kill 'KILL', @pid
+  end
+
+  def log(message)
+    warn message if @verbose
+  end
 
   def find_app(name)
     desktop = Atspi.get_desktop(0)
