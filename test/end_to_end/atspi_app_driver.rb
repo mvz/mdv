@@ -130,6 +130,5 @@ class AppDriver
     @cleanup = true
     _, status = Process.wait2 @pid
     status
-    status
   end
 end
