@@ -45,10 +45,10 @@ class AppDriver
 
   def boot(test_timeout: 30, exit_timeout: 10, arguments: [])
     raise 'Already booted' if @pid
-    if @verbose
-      warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
-    end
-    @pid = Process.spawn "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
+
+    command = "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
+    warn "About to spawn: `#{command}`" if @verbose
+    @pid = Process.spawn command
 
     @killed = false
     @cleanup = false
