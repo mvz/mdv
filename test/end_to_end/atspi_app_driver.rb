@@ -33,17 +33,20 @@ Atspi::Accessible.include AtspiAccessiblePatches
 # Test driver for the Atspi-enabled applications. Takes care of boot and
 # shutdown, and provides a handle on the GUI's main UI frame.
 class AppDriver
-  def initialize app_name
+  def initialize app_name, verbose: false
     @app_file = "bin/#{app_name}"
     @lib_dir = 'lib'
     @app_name = app_name
     @pid = nil
     @killed = false
+    @verbose = verbose
   end
 
   def boot test_timeout: 30, exit_timeout: 10, arguments: []
     raise 'Already booted' if @pid
-    warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
+    if @verbose
+      warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
+    end
     @pid = Process.spawn "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
 
     @killed = false
@@ -56,7 +59,7 @@ class AppDriver
         break if @cleanup
         sleep 0.1
       end
-      warn "Waited #{count * 0.1} seconds for test to be done"
+      warn "Waited #{count * 0.1} seconds for test to be done" if @verbose
 
       count = 0
       (exit_timeout * 10).times do
@@ -64,10 +67,10 @@ class AppDriver
         break unless @pid
         sleep 0.1
       end
-      warn "Waited #{count * 0.1} seconds for pid to go away"
+      warn "Waited #{count * 0.1} seconds for pid to go away" if @verbose
 
       if @pid
-        warn "About to kill child process #{@pid}"
+        warn "About to kill child process #{@pid}" if @verbose
         @killed = true
         Process.kill 'KILL', @pid
       end
