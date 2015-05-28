@@ -22,6 +22,7 @@ module AtspiAccessiblePatches
 
   def inspect_recursive level = 0, maxlevel = 4
     each_child do |child|
+      next unless child
       puts "#{'  ' * level} > name: #{child.name}; role: #{child.role}"
       child.inspect_recursive(level + 1) unless level >= maxlevel
     end
