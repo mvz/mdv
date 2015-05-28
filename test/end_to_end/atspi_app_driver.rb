@@ -41,23 +41,30 @@ class AppDriver
     @killed = false
   end
 
-  def boot timeout: 10, arguments: []
+  def boot test_timeout: 30, exit_timeout: 10, arguments: []
     raise 'Already booted' if @pid
+    warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
     @pid = Process.spawn "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
 
     @killed = false
     @cleanup = false
 
     Thread.new do
-      ((timeout - 1) * 10).times do
+      count = 0
+      (test_timeout * 10).times do
+        count += 1
         break if @cleanup
         sleep 0.1
       end
+      warn "Waited #{count * 0.1} seconds for test to be done"
 
-      10.times do
+      count = 0
+      (exit_timeout * 10).times do
+        count += 1
         break unless @pid
         sleep 0.1
       end
+      warn "Waited #{count * 0.1} seconds for pid to go away"
 
       if @pid
         warn "About to kill child process #{@pid}"
