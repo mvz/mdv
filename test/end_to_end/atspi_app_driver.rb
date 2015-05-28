@@ -105,7 +105,8 @@ class AppDriver
   end
 
   def try_repeatedly
-    10.times.each do |num|
+    # Try for about 12 seconds
+    50.times.each do |num|
       result = yield
       return result if result
       sleep_time = 0.01 * (num + 1)
