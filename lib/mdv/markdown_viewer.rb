@@ -4,7 +4,7 @@ module MDV
   class MarkdownViewer
     attr_reader :file
 
-    def initialize file
+    def initialize(file)
       @file = file
       setup_gui
       reload
@@ -13,19 +13,19 @@ module MDV
     end
 
     def connect_signals
-      @win.signal_connect 'key-press-event' do |wdg, evt, ud|
+      @win.signal_connect 'key-press-event' do |_wdg, evt, _ud|
         if evt.state == :control_mask
           case evt.keyval
-          when "q".ord
+          when 'q'.ord
             @win.destroy
-          when "r".ord
-            self.reload
+          when 'r'.ord
+            reload
           end
         end
         false
       end
 
-      @win.signal_connect("destroy") { Gtk.main_quit }
+      @win.signal_connect('destroy') { Gtk.main_quit }
     end
 
     def setup_gui

@@ -11,7 +11,7 @@ module AtspiAccessiblePatches
     end
   end
 
-  def find_role role, regex = //
+  def find_role(role, regex = //)
     return self if role == self.role && name =~ regex
     each_child do |child|
       result = child.find_role role, regex
@@ -20,7 +20,7 @@ module AtspiAccessiblePatches
     nil
   end
 
-  def inspect_recursive level = 0, maxlevel = 4
+  def inspect_recursive(level = 0, maxlevel = 4)
     each_child do |child|
       next unless child
       puts "#{'  ' * level} > name: #{child.name}; role: #{child.role}"
@@ -34,7 +34,7 @@ Atspi::Accessible.include AtspiAccessiblePatches
 # Test driver for the Atspi-enabled applications. Takes care of boot and
 # shutdown, and provides a handle on the GUI's main UI frame.
 class AppDriver
-  def initialize app_name, verbose: false
+  def initialize(app_name, verbose: false)
     @app_file = "bin/#{app_name}"
     @lib_dir = 'lib'
     @app_name = app_name
@@ -43,7 +43,7 @@ class AppDriver
     @verbose = verbose
   end
 
-  def boot test_timeout: 30, exit_timeout: 10, arguments: []
+  def boot(test_timeout: 30, exit_timeout: 10, arguments: [])
     raise 'Already booted' if @pid
     if @verbose
       warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
@@ -93,7 +93,7 @@ class AppDriver
 
   def find_and_focus_frame
     acc = try_repeatedly { find_app @app_name }
-    raise "App not found" unless acc
+    raise 'App not found' unless acc
 
     frame = acc.get_child_at_index 0
     frame.role.must_equal :frame
@@ -105,7 +105,7 @@ class AppDriver
 
   private
 
-  def find_app name
+  def find_app(name)
     desktop = Atspi.get_desktop(0)
     desktop.each_child do |child|
       next if child.nil?
@@ -130,7 +130,6 @@ class AppDriver
     @cleanup = true
     _, status = Process.wait2 @pid
     status
-    return status
+    status
   end
-
 end
