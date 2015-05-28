@@ -15,7 +15,7 @@ end
 describe 'The MDV application' do
   before do
     @driver = MDVDriver.new
-    @thread = @driver.boot("README.md")
+    @driver.boot("README.md")
   end
 
   it 'starts and can be quit with Ctrl-q' do
@@ -29,6 +29,5 @@ describe 'The MDV application' do
 
   after do
     @driver.cleanup
-    @thread.join if @thread
   end
 end

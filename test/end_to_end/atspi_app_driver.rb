@@ -49,7 +49,7 @@ class AppDriver
     @killed = false
     @cleanup = false
 
-    Thread.new do
+    @thread = Thread.new do
       count = 0
       (test_timeout * 10).times do
         count += 1
@@ -81,10 +81,9 @@ class AppDriver
   end
 
   def cleanup
-    return unless @pid
-    @cleanup = true
-    _, status = Process.wait2 @pid
+    status = exit_status
     @pid = nil
+    @thread.join if @thread
     status
   end
 
@@ -121,4 +120,13 @@ class AppDriver
     end
     yield
   end
+
+  def exit_status
+    return unless @pid
+    @cleanup = true
+    _, status = Process.wait2 @pid
+    status
+    return status
+  end
+
 end
