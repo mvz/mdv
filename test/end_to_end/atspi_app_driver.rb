@@ -39,7 +39,6 @@ class AppDriver
     @lib_dir = 'lib'
     @app_name = app_name
     @pid = nil
-    @killed = false
     @verbose = verbose
   end
 
@@ -48,7 +47,6 @@ class AppDriver
 
     spawn_process(arguments)
 
-    @killed = false
     @cleanup = false
 
     @thread = Thread.new do
@@ -103,7 +101,6 @@ class AppDriver
 
   def kill_process
     log "About to kill child process #{@pid}"
-    @killed = true
     Process.kill 'KILL', @pid
   end
 
