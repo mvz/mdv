@@ -11,7 +11,7 @@ module AtspiAccessiblePatches
     end
   end
 
-  def find_role role, regex = //
+  def find_role(role, regex = //)
     return self if role == self.role && name =~ regex
     each_child do |child|
       result = child.find_role role, regex
@@ -20,7 +20,7 @@ module AtspiAccessiblePatches
     nil
   end
 
-  def inspect_recursive level = 0, maxlevel = 4
+  def inspect_recursive(level = 0, maxlevel = 4)
     each_child do |child|
       next unless child
       puts "#{'  ' * level} > name: #{child.name}; role: #{child.role}"
@@ -34,48 +34,32 @@ Atspi::Accessible.include AtspiAccessiblePatches
 # Test driver for the Atspi-enabled applications. Takes care of boot and
 # shutdown, and provides a handle on the GUI's main UI frame.
 class AppDriver
-  def initialize app_name, verbose: false
+  def initialize(app_name, verbose: false)
     @app_file = "bin/#{app_name}"
     @lib_dir = 'lib'
     @app_name = app_name
     @pid = nil
-    @killed = false
     @verbose = verbose
   end
 
-  def boot test_timeout: 30, exit_timeout: 10, arguments: []
+  def boot(test_timeout: 30, exit_timeout: 10, arguments: [])
     raise 'Already booted' if @pid
-    if @verbose
-      warn "About to spawn: `ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}`"
-    end
-    @pid = Process.spawn "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
 
-    @killed = false
+    spawn_process(arguments)
+
     @cleanup = false
 
     @thread = Thread.new do
-      count = 0
-      (test_timeout * 10).times do
-        count += 1
-        break if @cleanup
-        sleep 0.1
-      end
-      warn "Waited #{count * 0.1} seconds for test to be done" if @verbose
-
-      count = 0
-      (exit_timeout * 10).times do
-        count += 1
-        break unless @pid
-        sleep 0.1
-      end
-      warn "Waited #{count * 0.1} seconds for pid to go away" if @verbose
-
-      if @pid
-        warn "About to kill child process #{@pid}" if @verbose
-        @killed = true
-        Process.kill 'KILL', @pid
-      end
+      wait_for('test to be done', test_timeout) { @cleanup }
+      wait_for('pid to go away', exit_timeout) { !@pid }
+      kill_process if @pid
     end
+  end
+
+  def spawn_process(arguments)
+    command = "ruby -I#{@lib_dir} #{@app_file} #{arguments.join(' ')}"
+    log "About to spawn: `#{command}`"
+    @pid = Process.spawn command
   end
 
   def press_ctrl_q
@@ -93,7 +77,7 @@ class AppDriver
 
   def find_and_focus_frame
     acc = try_repeatedly { find_app @app_name }
-    raise "App not found" unless acc
+    raise 'App not found' unless acc
 
     frame = acc.get_child_at_index 0
     frame.role.must_equal :frame
@@ -105,7 +89,26 @@ class AppDriver
 
   private
 
-  def find_app name
+  def wait_for(description, timeout)
+    count = 0
+    (timeout * 10).times do
+      count += 1
+      break if yield
+      sleep 0.1
+    end
+    log "Waited #{count * 0.1} seconds for #{description}"
+  end
+
+  def kill_process
+    log "About to kill child process #{@pid}"
+    Process.kill 'KILL', @pid
+  end
+
+  def log(message)
+    warn message if @verbose
+  end
+
+  def find_app(name)
     desktop = Atspi.get_desktop(0)
     desktop.each_child do |child|
       next if child.nil?
@@ -130,7 +133,5 @@ class AppDriver
     @cleanup = true
     _, status = Process.wait2 @pid
     status
-    return status
   end
-
 end

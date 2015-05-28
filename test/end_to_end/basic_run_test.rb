@@ -7,7 +7,7 @@ class MDVDriver < AppDriver
     super 'mdv'
   end
 
-  def boot filename
+  def boot(filename)
     super arguments: [filename]
   end
 end
@@ -15,7 +15,7 @@ end
 describe 'The MDV application' do
   before do
     @driver = MDVDriver.new
-    @driver.boot("README.md")
+    @driver.boot('README.md')
   end
 
   it 'starts and can be quit with Ctrl-q' do
