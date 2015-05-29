@@ -76,7 +76,7 @@ class AppDriver
   end
 
   def find_and_focus_frame
-    acc = try_repeatedly { find_app @app_name }
+    acc = try_repeatedly { find_app }
     raise 'App not found' unless acc
 
     frame = acc.get_child_at_index 0
@@ -108,11 +108,11 @@ class AppDriver
     warn message if @verbose
   end
 
-  def find_app(name)
+  def find_app
     desktop = Atspi.get_desktop(0)
     desktop.each_child do |child|
       next if child.nil?
-      return child if child.name == name
+      return child if child.name == @app_name
     end
     nil
   end
