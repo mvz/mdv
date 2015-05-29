@@ -1,8 +1,8 @@
 require_relative '../test_helper'
-require_relative 'atspi_app_driver'
+require 'atspi_app_driver'
 
 # Test driver for the MDV application.
-class MDVDriver < AppDriver
+class MDVDriver < AtspiAppDriver
   def initialize
     super 'mdv'
   end
@@ -19,8 +19,6 @@ describe 'The MDV application' do
   end
 
   it 'starts and can be quit with Ctrl-q' do
-    @driver.find_and_focus_frame
-
     @driver.press_ctrl_q
 
     status = @driver.cleanup
