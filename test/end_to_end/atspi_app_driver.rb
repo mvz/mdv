@@ -7,7 +7,8 @@ Atspi.load_class :Accessible
 module AtspiAccessiblePatches
   def each_child
     child_count.times do |i|
-      yield get_child_at_index i
+      child = get_child_at_index i
+      yield child if child
     end
   end
 
@@ -22,7 +23,6 @@ module AtspiAccessiblePatches
 
   def inspect_recursive(level = 0, maxlevel = 4)
     each_child do |child|
-      next unless child
       puts "#{'  ' * level} > name: #{child.name}; role: #{child.role}"
       child.inspect_recursive(level + 1) unless level >= maxlevel
     end
@@ -111,7 +111,6 @@ class AppDriver
   def find_app
     desktop = Atspi.get_desktop(0)
     desktop.each_child do |child|
-      next if child.nil?
       return child if child.name == @app_name
     end
     nil
