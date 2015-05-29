@@ -7,7 +7,8 @@ Atspi.load_class :Accessible
 module AtspiAccessiblePatches
   def each_child
     child_count.times do |i|
-      yield get_child_at_index i
+      child = get_child_at_index i
+      yield child if child
     end
   end
 
@@ -22,7 +23,6 @@ module AtspiAccessiblePatches
 
   def inspect_recursive(level = 0, maxlevel = 4)
     each_child do |child|
-      next unless child
       puts "#{'  ' * level} > name: #{child.name}; role: #{child.role}"
       child.inspect_recursive(level + 1) unless level >= maxlevel
     end
@@ -76,7 +76,7 @@ class AppDriver
   end
 
   def find_and_focus_frame
-    acc = try_repeatedly { find_app @app_name }
+    acc = wait_for('app to appear', 10) { find_app }
     raise 'App not found' unless acc
 
     frame = acc.get_child_at_index 0
@@ -89,16 +89,6 @@ class AppDriver
 
   private
 
-  def wait_for(description, timeout)
-    count = 0
-    (timeout * 10).times do
-      count += 1
-      break if yield
-      sleep 0.1
-    end
-    log "Waited #{count * 0.1} seconds for #{description}"
-  end
-
   def kill_process
     log "About to kill child process #{@pid}"
     Process.kill 'KILL', @pid
@@ -108,24 +98,25 @@ class AppDriver
     warn message if @verbose
   end
 
-  def find_app(name)
+  def find_app
     desktop = Atspi.get_desktop(0)
     desktop.each_child do |child|
-      next if child.nil?
-      return child if child.name == name
+      return child if child.name == @app_name
     end
     nil
   end
 
-  def try_repeatedly
+  # TODO: User timeout
+  def wait_for(description, _timeout)
+    start = Time.now
     # Try for 0.01 * 50 * (50 + 1) / 2 = 12.75 seconds
-    50.times.each do |num|
+    value = 50.times.each do |num|
       result = yield
-      return result if result
-      sleep_time = 0.01 * (num + 1)
-      sleep sleep_time
+      break result if result
+      sleep 0.01 * (num + 1)
     end
-    yield
+    log "Waited #{Time.now - start} seconds for #{description}"
+    value
   end
 
   def exit_status
