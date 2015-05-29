@@ -76,7 +76,7 @@ class AppDriver
   end
 
   def find_and_focus_frame
-    acc = try_repeatedly { find_app }
+    acc = wait_for('app to appear', 10) { find_app }
     raise 'App not found' unless acc
 
     frame = acc.get_child_at_index 0
@@ -88,16 +88,6 @@ class AppDriver
   end
 
   private
-
-  def wait_for(description, timeout)
-    count = 0
-    (timeout * 10).times do
-      count += 1
-      break if yield
-      sleep 0.1
-    end
-    log "Waited #{count * 0.1} seconds for #{description}"
-  end
 
   def kill_process
     log "About to kill child process #{@pid}"
@@ -116,15 +106,17 @@ class AppDriver
     nil
   end
 
-  # TODO: Merge with wait_for
-  def try_repeatedly
+  # TODO: User timeout
+  def wait_for(description, _timeout)
+    start = Time.now
     # Try for 0.01 * 50 * (50 + 1) / 2 = 12.75 seconds
-    50.times.each do |num|
+    value = 50.times.each do |num|
       result = yield
-      return result if result
+      break result if result
       sleep 0.01 * (num + 1)
     end
-    yield
+    log "Waited #{Time.now - start} seconds for #{description}"
+    value
   end
 
   def exit_status
