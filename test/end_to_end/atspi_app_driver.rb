@@ -117,13 +117,13 @@ class AppDriver
     nil
   end
 
+  # TODO: Merge with wait_for
   def try_repeatedly
     # Try for 0.01 * 50 * (50 + 1) / 2 = 12.75 seconds
     50.times.each do |num|
       result = yield
       return result if result
-      sleep_time = 0.01 * (num + 1)
-      sleep sleep_time
+      sleep 0.01 * (num + 1)
     end
     yield
   end
