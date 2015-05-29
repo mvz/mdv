@@ -118,7 +118,7 @@ class AppDriver
   end
 
   def try_repeatedly
-    # Try for about 12 seconds
+    # Try for 0.01 * 50 * (50 + 1) / 2 = 12.75 seconds
     50.times.each do |num|
       result = yield
       return result if result
