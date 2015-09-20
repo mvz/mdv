@@ -1,3 +1,10 @@
+### 0.1.5 / 2015-09-20
+
+* Ensure all relevant files are released in the gem
+* Code restructuring
+* Tested end-to-end using atspi_app_driver
+* Updated dependencies
+
 ### 0.1.4 / 2014-05-27
 
 * Use semantic versioning for dependencies
