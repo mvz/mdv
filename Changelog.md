@@ -1,3 +1,10 @@
+# Change log
+
+### 0.1.6 / 2015-10-17
+
+* Ensure library files are also released in the gem
+* Include license info in gemspec
+
 ### 0.1.5 / 2015-09-20
 
 * Ensure all relevant files are released in the gem
