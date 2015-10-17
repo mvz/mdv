@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
       `git ls-files -z`.split("\0")
   s.test_files = Dir['test/**/*.rb']
 
+  s.license = 'MIT'
+
   s.add_dependency('gir_ffi-gtk', ['~> 0.8.0'])
   s.add_dependency('github-markup', ['~> 1.1'])
   s.add_dependency('github-markdown', ['~> 0.6.5'])
