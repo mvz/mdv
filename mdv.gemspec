@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
 
   s.license = 'MIT'
 
-  s.add_dependency('gir_ffi-gtk', ['~> 0.8.0'])
+  s.add_dependency('gir_ffi-gtk', ['~> 0.9.0'])
   s.add_dependency('github-markup', ['~> 1.1'])
   s.add_dependency('github-markdown', ['~> 0.6.5'])
   s.add_development_dependency('rake', ['~> 10.1'])
   s.add_development_dependency('minitest', ['~> 5.5'])
-  s.add_development_dependency('atspi_app_driver', ['0.0.3'])
+  s.add_development_dependency('atspi_app_driver', ['0.0.4'])
 end

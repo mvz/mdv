@@ -27,7 +27,7 @@ module MDV
 
     def connect_key_press_event_signal
       @win.signal_connect 'key-press-event' do |_wdg, evt, _ud|
-        handle_key(evt) if evt.state == :control_mask
+        handle_key(evt) if evt.state[:control_mask]
         false
       end
     end
