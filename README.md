@@ -14,7 +14,7 @@ Press Ctrl-R to reload, Ctrl-Q to quit.
 
 ## Dependencies
 
-MDV needs some additional software installed in o
+MDV needs some additional software installed in order to work.
 
 ### Debian
 
@@ -39,5 +39,5 @@ If you want to run the tests, you may need to install additional packages:
 
 ## License
 
-Copyright &copy; 2012&ndash;2015 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2012&ndash;2016 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.
