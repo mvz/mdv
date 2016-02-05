@@ -1,5 +1,9 @@
 # Change log
 
+## 0.2.0 / 2016-02-05
+
+* Port to WebKit2
+
 ## 0.1.7 / 2016-01-21
 
 * Update dependency on GirFFI
