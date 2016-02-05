@@ -21,7 +21,7 @@ MDV needs some additional software installed in order to work.
 The following should work:
 
     sudo apt-get install libgirepository1.0-dev gobject-introspection
-    sudo apt-get install libwebkitgtk-3.0-dev
+    sudo apt-get install libwebkit2gtk-4.0-dev
 
 ### Other OS
 
