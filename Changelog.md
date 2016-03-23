@@ -1,5 +1,9 @@
 # Change log
 
+## 0.2.1 / 2016-03-23
+
+* Update dependencies
+
 ## 0.2.0 / 2016-02-05
 
 * Port to WebKit2
