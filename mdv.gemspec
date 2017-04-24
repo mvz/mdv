@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.license = 'MIT'
 
-  s.add_dependency('gir_ffi-gtk', ['~> 0.11.0'])
+  s.add_dependency('webkit2-gtk', ['~> 3.1.1'])
   s.add_dependency('github-markup', ['~> 1.1'])
   s.add_dependency('github-markdown', ['~> 0.6.5'])
   s.add_development_dependency('rake', ['~> 12.0'])
