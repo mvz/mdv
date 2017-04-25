@@ -1,5 +1,4 @@
-require 'gir_ffi-gtk3'
-GirFFI.setup :WebKit2, '4.0'
+require 'webkit2-gtk'
 
 module MDV
   # Markdown viewer window class
@@ -27,7 +26,7 @@ module MDV
 
     def connect_key_press_event_signal
       @win.signal_connect 'key-press-event' do |_wdg, evt, _ud|
-        handle_key(evt) if evt.state[:control_mask]
+        handle_key(evt) if evt.state.control_mask?
         false
       end
     end
@@ -55,7 +54,7 @@ module MDV
     end
 
     def web_view
-      @wv ||= WebKit2::WebView.new
+      @wv ||= WebKit2Gtk::WebView.new
     end
 
     def fullpath

@@ -4,7 +4,7 @@ require 'mdv'
 
 Gtk.init
 
-WebKit2::WebContext.get_default.set_cache_model :document_viewer
+WebKit2Gtk::WebContext.default.set_cache_model :document_viewer
 
 file = ARGV[0]
 raise 'Need file' unless file
