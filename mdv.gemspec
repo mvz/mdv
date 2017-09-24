@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.executables = ['mdv']
   s.files =
     Dir['bin/*', '*.md', 'LICENSE', 'Rakefile', 'Gemfile', 'lib/**/*.rb'] &
-      `git ls-files -z`.split("\0")
+    `git ls-files -z`.split("\0")
   s.test_files = Dir['test/**/*.rb']
 
   s.license = 'MIT'
