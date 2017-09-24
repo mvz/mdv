@@ -1,3 +1,12 @@
+# Dot at end of line makes it clearer that the line is not done
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Multi-line assignment should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
@@ -6,10 +15,6 @@ Lint/AssignmentInCondition:
 Style/AndOr:
   EnforcedStyle: conditionals
 
-# Dot at end of line makes it clearer that the line is not done
-Style/DotPosition:
-  EnforcedStyle: trailing
-
 # Require at least two dependent lines before suggesting a guard clause
 Style/GuardClause:
   MinBodyLength: 2
@@ -17,11 +22,6 @@ Style/GuardClause:
 # Don't use if or unless as modifier if the line gets too long
 Style/IfUnlessModifier:
   MaxLineLength: 60
-
-# Multi-line assignment should be simply indented. Aligning them makes it even
-# harder to keep a sane line length.
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
 
 # Sometimes an if statement just looks better than next with a guard clause
 Style/Next:
