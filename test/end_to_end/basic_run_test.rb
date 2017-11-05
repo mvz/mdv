@@ -1,8 +1,8 @@
 require_relative '../test_helper'
-require 'atspi_app_driver'
+require 'gnome_app_driver'
 
 # Test driver for the MDV application.
-class MDVDriver < AtspiAppDriver
+class MDVDriver < GnomeAppDriver
   def initialize
     super 'mdv'
   end
