@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'webkit2-gtk'
 
 module MDV
