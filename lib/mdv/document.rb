@@ -14,7 +14,7 @@ module MDV
     end
 
     def html
-      GitHub::Markup.render(fullpath)
+      GitHub::Markup.render(fullpath, File.read(fullpath))
     end
 
     private
