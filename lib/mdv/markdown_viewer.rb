@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require 'webkit2-gtk'
+require 'mdv/document'
 
 module MDV
   # Markdown viewer window class
   class MarkdownViewer
-    attr_reader :file
-
     def initialize(file)
-      @file = file
+      @document = Document.new(file)
       setup_gui
       reload
       connect_signals
@@ -59,20 +58,8 @@ module MDV
       @wv ||= WebKit2Gtk::WebView.new
     end
 
-    def fullpath
-      @fullpath ||= File.expand_path(file, Dir.pwd)
-    end
-
-    def base_uri
-      @base_uri ||= "file://#{fullpath}"
-    end
-
-    def html
-      GitHub::Markup.render(fullpath)
-    end
-
     def reload
-      web_view.load_html html, base_uri
+      web_view.load_html @document.html, @document.base_uri
     end
   end
 end

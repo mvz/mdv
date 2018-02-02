@@ -34,6 +34,10 @@ Style/RedundantReturn:
 Style/SignalException:
   EnforcedStyle: only_raise
 
+# I like to have symbols always look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
 # Accessors are only trivial if they match the ivar name
 Style/TrivialAccessors:
   ExactNameMatch: true
