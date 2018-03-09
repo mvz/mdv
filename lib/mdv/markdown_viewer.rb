@@ -49,13 +49,13 @@ module MDV
     end
 
     def scrolled_window
-      @scr ||= Gtk::ScrolledWindow.new(nil, nil).tap do |it|
+      @scrolled_window ||= Gtk::ScrolledWindow.new(nil, nil).tap do |it|
         it.add web_view
       end
     end
 
     def web_view
-      @wv ||= WebKit2Gtk::WebView.new
+      @web_view ||= WebKit2Gtk::WebView.new
     end
 
     def reload
