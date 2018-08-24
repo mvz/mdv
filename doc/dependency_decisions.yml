@@ -17,30 +17,21 @@
     :why: 
     :versions: []
     :when: 2017-07-23 09:52:22.163674137 Z
-- - :approve
-  - cairo
-  - :who: 
-    :why: 
-    :versions:
-    - 1.15.9
-    :when: 2017-07-23 09:52:57.788607338 Z
 - - :whitelist
   - LGPLv2+
   - :who: 
     :why: 
     :versions: []
     :when: 2017-09-24 16:54:22.687906049 Z
-- - :approve
-  - cairo
-  - :who: 
-    :why: 
-    :versions:
-    - 1.15.10
-    - 1.15.9
-    :when: 2017-10-17 06:32:58.147860108 Z
 - - :whitelist
   - Ruby's
   - :who: 
     :why: 
     :versions: []
     :when: 2018-04-25 09:56:17.291299543 Z
+- - :whitelist
+  - ruby
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2018-08-24 12:38:20.108867570 Z
