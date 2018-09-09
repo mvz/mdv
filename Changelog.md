@@ -1,5 +1,12 @@
 # Change log
 
+## Unreleased
+
+* Drop support for Ruby 2.2 and lower
+* Update dependencies
+* Hide context menus to prevent unwanted actions
+* Open links in default browser instead of in mdv itself
+
 ## 0.3.1 / 2017-11-11
 
 * Update dependencies
@@ -24,7 +31,7 @@
 
 * Update dependency on GirFFI
 * Update code to use GirFFI's new bitmasks
-* Use updated atspi_app_driver to fix tests
+* Use updated `atspi_app_driver` to fix tests
 
 ## 0.1.6 / 2015-10-17
 
@@ -35,7 +42,7 @@
 
 * Ensure all relevant files are released in the gem
 * Code restructuring
-* Tested end-to-end using atspi_app_driver
+* Tested end-to-end using `atspi_app_driver`
 * Updated dependencies
 
 ## 0.1.4 / 2014-05-27
