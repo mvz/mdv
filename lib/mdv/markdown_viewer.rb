@@ -35,6 +35,22 @@ module MDV
 
     def connect_web_view_signals
       web_view.signal_connect('context-menu') { true }
+      web_view.signal_connect('decide-policy') do |_wv, decision, decision_type|
+        case decision_type.nick
+        when 'navigation-action'
+          action = decision.navigation_action
+          if action.user_gesture?
+            Gtk.show_uri_on_window(@win, action.request.uri, 0)
+            true
+          else
+            false
+          end
+        when 'new-window-action'
+          true
+        else
+          false
+        end
+      end
     end
 
     def handle_key(evt)
