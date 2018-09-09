@@ -19,6 +19,7 @@ module MDV
     def connect_signals
       connect_key_press_event_signal
       connect_destroy_signal
+      connect_web_view_signals
     end
 
     def connect_destroy_signal
@@ -30,6 +31,10 @@ module MDV
         handle_key(evt) if evt.state.control_mask?
         false
       end
+    end
+
+    def connect_web_view_signals
+      web_view.signal_connect('context-menu') { true }
     end
 
     def handle_key(evt)
