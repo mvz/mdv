@@ -55,12 +55,11 @@ module MDV
         action = decision.navigation_action
         if action.user_gesture?
           Gtk.show_uri_on_window(@win, action.request.uri, 0)
-          return true
+          true
         end
       when 'new-window-action'
-        return true
+        true
       end
-      false
     end
 
     def setup_gui
