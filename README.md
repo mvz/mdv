@@ -6,7 +6,8 @@ Simple Markdown Viewer for GNOME 3.
 
     mdv README.md
 
-Press Ctrl-R to reload, Ctrl-Q to quit.
+Press Ctrl-R to reload, Ctrl-Q to quit, Ctrl-C to copy selected text. Clicked
+links open in default browser.
 
 ## Install
 
