@@ -1,5 +1,9 @@
 # Change log
 
+## 0.4.1 / 2018-12-09
+
+* Update dependencies
+
 ## 0.4.0 / 2018-09-12
 
 * Drop support for Ruby 2.2 and lower
