@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require_relative "../test_helper"
-require "gnome_app_driver"
+require "atspi_app_driver"
 
 # Test driver for the MDV application.
-class MDVDriver < GnomeAppDriver
+class MDVDriver < AtspiAppDriver
   def initialize
     super "mdv"
   end
