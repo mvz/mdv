@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-require "webkit2-gtk"
+require "gir_ffi-gtk3"
 require "mdv/document"
+
+GirFFI.setup :WebKit2, '4.0'
 
 module MDV
   # Markdown viewer window class
@@ -28,7 +30,7 @@ module MDV
 
     def connect_key_press_event_signal
       @win.signal_connect "key-press-event" do |_wdg, evt, _ud|
-        handle_key(evt) if evt.state.control_mask?
+        handle_key(evt) if evt.state[:control_mask]
         false
       end
     end
@@ -50,14 +52,14 @@ module MDV
     end
 
     def handle_decide_policy(decision, decision_type)
-      case decision_type.nick
-      when "navigation-action"
+      case decision_type
+      when :navigation_action
         action = decision.navigation_action
         if action.user_gesture?
           Gtk.show_uri_on_window(@win, action.request.uri, 0)
           true
         end
-      when "new-window-action"
+      when :new_window_action
         true
       end
     end
@@ -76,7 +78,7 @@ module MDV
     end
 
     def web_view
-      @web_view ||= WebKit2Gtk::WebView.new
+      @web_view ||= WebKit2::WebView.new
     end
 
     def reload
