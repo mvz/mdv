@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'mdv'
+require "mdv"
 
 Gtk.init
 
 WebKit2Gtk::WebContext.default.set_cache_model :document_viewer
 
 file = ARGV[0]
-raise 'Need file' unless file
+raise "Need file" unless file
 
 MDV::MarkdownViewer.new file
 

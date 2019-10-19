@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../test_helper'
-require 'gnome_app_driver'
+require_relative "../test_helper"
+require "gnome_app_driver"
 
 # Test driver for the MDV application.
 class MDVDriver < GnomeAppDriver
   def initialize
-    super 'mdv'
+    super "mdv"
   end
 
   def boot(filename)
@@ -14,13 +14,13 @@ class MDVDriver < GnomeAppDriver
   end
 end
 
-describe 'The MDV application' do
+describe "The MDV application" do
   before do
     @driver = MDVDriver.new
-    @driver.boot('README.md')
+    @driver.boot("README.md")
   end
 
-  it 'starts and can be quit with Ctrl-q' do
+  it "starts and can be quit with Ctrl-q" do
     @driver.press_ctrl_q
 
     status = @driver.cleanup

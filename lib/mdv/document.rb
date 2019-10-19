@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'github/markup'
+require "github/markup"
 
 module MDV
   # Markdown document class

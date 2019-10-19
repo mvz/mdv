@@ -3,10 +3,6 @@ require: rubocop-performance
 AllCops:
   TargetRubyVersion: 2.4
 
-# Dot at end of line makes it clearer that the line is not done
-Layout/DotPosition:
-  EnforcedStyle: trailing
-
 # Multi-line assignment should be simply indented. Aligning them makes it even
 # harder to keep a sane line length.
 Layout/MultilineOperationIndentation:
@@ -35,6 +31,10 @@ Style/RedundantReturn:
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
+
+# Prefer double quotes
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 
 # I like to have symbols always look like symbols
 Style/SymbolArray:

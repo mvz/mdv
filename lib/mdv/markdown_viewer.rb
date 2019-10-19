@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'webkit2-gtk'
-require 'mdv/document'
+require "webkit2-gtk"
+require "mdv/document"
 
 module MDV
   # Markdown viewer window class
@@ -23,41 +23,41 @@ module MDV
     end
 
     def connect_destroy_signal
-      @win.signal_connect('destroy') { Gtk.main_quit }
+      @win.signal_connect("destroy") { Gtk.main_quit }
     end
 
     def connect_key_press_event_signal
-      @win.signal_connect 'key-press-event' do |_wdg, evt, _ud|
+      @win.signal_connect "key-press-event" do |_wdg, evt, _ud|
         handle_key(evt) if evt.state.control_mask?
         false
       end
     end
 
     def connect_web_view_signals
-      web_view.signal_connect('context-menu') { true }
-      web_view.signal_connect('decide-policy') do |_wv, decision, decision_type|
+      web_view.signal_connect("context-menu") { true }
+      web_view.signal_connect("decide-policy") do |_wv, decision, decision_type|
         handle_decide_policy(decision, decision_type)
       end
     end
 
     def handle_key(evt)
       case evt.keyval
-      when 'q'.ord
+      when "q".ord
         @win.destroy
-      when 'r'.ord
+      when "r".ord
         reload
       end
     end
 
     def handle_decide_policy(decision, decision_type)
       case decision_type.nick
-      when 'navigation-action'
+      when "navigation-action"
         action = decision.navigation_action
         if action.user_gesture?
           Gtk.show_uri_on_window(@win, action.request.uri, 0)
           true
         end
-      when 'new-window-action'
+      when "new-window-action"
         true
       end
     end
