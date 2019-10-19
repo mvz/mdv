@@ -15,7 +15,11 @@ links open in default browser.
 
 ## Dependencies
 
-MDV depends on the webkit2-gtk gem.
+MDV depends on the `gir_ffi-gtk` gem. Additionally, you need to install the
+Webkit2Gtk library and its gobject-introspection information. On Debian and
+Ubuntu, the following should work:
+
+    apt-get install gir1.2-webkit2-4.0
 
 ## Contributing
 
