@@ -15,7 +15,7 @@ links open in default browser.
 
 ## Dependencies
 
-MDV depends on the wekit2-gtk gem.
+MDV depends on the webkit2-gtk gem.
 
 ## Contributing
 
@@ -24,5 +24,5 @@ on GitHub.
 
 ## License
 
-Copyright &copy; 2012&ndash;2018 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2012&ndash;2019 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.
