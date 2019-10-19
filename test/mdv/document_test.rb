@@ -9,7 +9,7 @@ describe MDV::Document do
 
   describe '#html' do
     it 'renders the correct html' do
-      document.html.
+      _(document.html).
         must_equal "<h1>Test</h1>\n\n<p>This is a test document.</p>\n"
     end
   end
