@@ -1,5 +1,10 @@
 # Change log
 
+## 0.5.0 / 2019-10-20
+
+* Drop support for Ruby 2.3 and lower
+* Port to GirFFI-Gtk
+
 ## 0.4.1 / 2018-12-09
 
 * Update dependencies

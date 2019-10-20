@@ -19,7 +19,11 @@ MDV depends on the `gir_ffi-gtk` gem. Additionally, you need to install the
 Webkit2Gtk library and its gobject-introspection information. On Debian and
 Ubuntu, the following should work:
 
-    apt-get install gir1.2-webkit2-4.0
+    sudo apt-get install gir1.2-webkit2-4.0
+
+On Ubuntu, you may also have to install two additional packages:
+
+    sudo apt-get install libwebkit2gtk-4.0-dev libjavascriptcoregtk-4.0-dev
 
 ## Contributing
 
