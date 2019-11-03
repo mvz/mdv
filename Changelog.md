@@ -1,5 +1,10 @@
 # Change log
 
+## 0.5.1 / 2019-11-03
+
+* Fix navigation signal handler that would cause program to abort just after
+  loading
+
 ## 0.5.0 / 2019-10-20
 
 * Drop support for Ruby 2.3 and lower
