@@ -55,7 +55,7 @@ module MDV
       case decision_type
       when :navigation_action
         action = decision.navigation_action
-        if action.user_gesture?
+        if action.is_user_gesture
           Gtk.show_uri_on_window(@win, action.request.uri, 0)
           true
         end

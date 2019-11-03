@@ -21,6 +21,7 @@ describe "The MDV application" do
   end
 
   it "starts and can be quit with Ctrl-q" do
+    sleep 1
     @driver.press_ctrl_q
 
     status = @driver.cleanup
