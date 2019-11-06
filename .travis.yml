@@ -1,19 +1,23 @@
 language: ruby
-rvm:
-  - 2.6
-install:
-  - bundle install --retry=3
+
+dist: xenial
+
+services:
+  - xvfb
+
 before_install:
   - sudo apt-get update
-  - sudo apt-get install xvfb
   - sudo apt-get install dbus dbus-x11
+  # Provides A11y services used by atspi_app_driver to drive SUT
   - sudo apt-get install at-spi2-core
   - sudo apt-get install libgirepository1.0-dev gobject-introspection
   - sudo apt-get install gir1.2-webkit2-4.0
   # We shouldn't need these since we should use the so versions in the non-dev packages.
   - sudo apt-get install libwebkit2gtk-4.0-dev libjavascriptcoregtk-4.0-dev
   - sudo apt-get install gir1.2-atspi-2.0
-script: "xvfb-run dbus-launch bundle exec rake test"
+
+rvm:
+  - 2.6
 
 branches:
   only:
