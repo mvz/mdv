@@ -7,14 +7,19 @@ services:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install dbus dbus-x11
-  # Provides A11y services used by atspi_app_driver to drive SUT
-  - sudo apt-get install at-spi2-core
-  - sudo apt-get install libgirepository1.0-dev gobject-introspection
+  # Provides libgirepository-1.0.so.1
+  - sudo apt-get install libgirepository-1.0-1
+  # Provides GIR info for Gtk::WebKit 4
   - sudo apt-get install gir1.2-webkit2-4.0
   # We shouldn't need these since we should use the so versions in the non-dev packages.
   - sudo apt-get install libwebkit2gtk-4.0-dev libjavascriptcoregtk-4.0-dev
+  # Provides A11y services used by atspi_app_driver to drive SUT
+  - sudo apt-get install at-spi2-core
+  # Provides GIR info used by atspi_app_driver
   - sudo apt-get install gir1.2-atspi-2.0
+
+cache:
+  bundler: true
 
 rvm:
   - 2.6
