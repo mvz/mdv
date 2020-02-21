@@ -1,44 +1,90 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
 
 AllCops:
   TargetRubyVersion: 2.4
+
+# Be lenient with line length
+Layout/LineLength:
+  Max: 92
+
+# Don't force lonely closing parentheses
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: same_line
+
+# Multi-line method calls should be simply indented. Aligning them makes it
+# even harder to keep a sane line length.
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 
 # Multi-line assignment should be simply indented. Aligning them makes it even
 # harder to keep a sane line length.
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+# Force consistent spacing independent of block contents
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyleForEmptyBraces: space
+
+# Assume the programmer knows how bracketed block syntax works
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
+
+# Activate new cops from RuboCop 0.81 and 0.82
+Lint/RaiseException:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
 
 # Allow and/or for control flow only
 Style/AndOr:
   EnforcedStyle: conditionals
 
+# Activate new cop from RuboCop 0.82
+Style/ExponentialNotation:
+  Enabled: true
+
 # Require at least two dependent lines before suggesting a guard clause
 Style/GuardClause:
   MinBodyLength: 2
+
+# Activate new cops from RuboCop 0.80
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
 
 # Sometimes an if statement just looks better than next with a guard clause
 Style/Next:
   Enabled: false
 
+# Use older RuboCop default
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%W': ()
+    '%w': ()
+
 # Allow explicit return with multiple return values
 Style/RedundantReturn:
   AllowMultipleReturnValues: true
 
-# Always use raise to raise exceptions
-Style/SignalException:
-  EnforcedStyle: only_raise
-
-# Prefer double quotes
+# Do not commit to use of interpolation
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
-# I like to have symbols always look like symbols
+# Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+# Project-specific configuration goes here.
 
 # Accessors are only trivial if they match the ivar name
 Style/TrivialAccessors:
