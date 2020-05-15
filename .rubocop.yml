@@ -26,41 +26,17 @@ Layout/MultilineOperationIndentation:
 Layout/SpaceBeforeBlockBraces:
   EnforcedStyleForEmptyBraces: space
 
-# Assume the programmer knows how bracketed block syntax works
-Lint/AmbiguousBlockAssociation:
-  Enabled: false
-
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
-
-# Activate new cops from RuboCop 0.81 and 0.82
-Lint/RaiseException:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
 
 # Allow and/or for control flow only
 Style/AndOr:
   EnforcedStyle: conditionals
 
-# Activate new cop from RuboCop 0.82
-Style/ExponentialNotation:
-  Enabled: true
-
 # Require at least two dependent lines before suggesting a guard clause
 Style/GuardClause:
   MinBodyLength: 2
-
-# Activate new cops from RuboCop 0.80
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
 
 # Sometimes an if statement just looks better than next with a guard clause
 Style/Next:
@@ -84,8 +60,26 @@ Style/StringLiterals:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Project-specific configuration goes here.
-
 # Accessors are only trivial if they match the ivar name
 Style/TrivialAccessors:
   ExactNameMatch: true
+
+# Activate new cops from RuboCop 0.80 - 0.83
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
