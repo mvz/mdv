@@ -4,6 +4,8 @@ require:
   - rubocop-performance
 
 AllCops:
+  Exclude:
+    - 'vendor/bundle/**/*'
   NewCops: enable
   TargetRubyVersion: 2.5
 
