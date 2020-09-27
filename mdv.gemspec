@@ -1,29 +1,36 @@
 # frozen_string_literal: true
 
-Gem::Specification.new do |s|
-  s.name = "mdv"
-  s.version = "0.5.1"
+Gem::Specification.new do |spec|
+  spec.name = "mdv"
+  spec.version = "0.5.1"
+  spec.authors = ["Matijs van Zuijlen"]
+  spec.email = ["matijs@matijs.net"]
 
-  s.summary = "Simple Markdown Viewer"
-  s.description = "Quickly view markdown files on GNOME"
-  s.required_ruby_version = ">= 2.5.0"
+  spec.summary = "Simple Markdown Viewer"
+  spec.description = <<~DESC
+    Quickly view markdown files on GNOME
+  DESC
+  spec.homepage = "http://www.github.com/mvz/mdv"
+  spec.license = "MIT"
 
-  s.authors = ["Matijs van Zuijlen"]
-  s.email = ["matijs@matijs.net"]
-  s.homepage = "http://www.github.com/mvz/mdv"
+  spec.required_ruby_version = ">= 2.5.0"
 
-  s.executables = ["mdv"]
-  s.files =
-    Dir["bin/*", "*.md", "LICENSE", "Rakefile", "Gemfile", "lib/**/*.rb"] &
-    `git ls-files -z`.split("\0")
-  s.test_files = Dir["test/**/*.rb"]
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = "https://github.com/mvz/mdv"
+  spec.metadata["changelog_uri"] = "https://github.com/mvz/mdv/blob/master/Changelog.md"
 
-  s.license = "MIT"
+  spec.files = File.read("Manifest.txt").split
+  spec.rdoc_options = ["--main", "README.md"]
+  spec.extra_rdoc_files = ["Changelog.md", "README.md"]
+  spec.require_paths = ["lib"]
+  spec.executables = ["mdv"]
 
-  s.add_dependency("gir_ffi-gtk", ["~> 0.15.0"])
-  s.add_dependency("github-markdown", ["~> 0.6.5"])
-  s.add_dependency("github-markup", ["~> 3.0"])
-  s.add_development_dependency("atspi_app_driver", ["~> 0.6.0"])
-  s.add_development_dependency("minitest", ["~> 5.12"])
-  s.add_development_dependency("rake", ["~> 13.0"])
+  spec.add_runtime_dependency "gir_ffi-gtk", "~> 0.15.0"
+  spec.add_runtime_dependency "github-markdown", "~> 0.6.5"
+  spec.add_runtime_dependency "github-markup", "~> 3.0"
+
+  spec.add_development_dependency "atspi_app_driver", "~> 0.6.0"
+  spec.add_development_dependency "minitest", "~> 5.12"
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rake-manifest", "~> 0.1.0"
 end
