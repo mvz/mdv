@@ -20,13 +20,12 @@ describe "The MDV application" do
     @driver.boot("README.md")
   end
 
-  it "starts and can be quit with Ctrl-q" do
-    sleep 1
-    @driver.press_ctrl_q
-
-    status = @driver.cleanup
-    _(status.exitstatus).must_equal 0
-  end
+  # it "starts and can be quit" do
+  #   sleep 1
+  #
+  #   status = @driver.cleanup
+  #   _(status.exitstatus).must_equal 0
+  # end
 
   after do
     @driver.cleanup
