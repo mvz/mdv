@@ -8,7 +8,8 @@ GirFFI.setup :WebKit2, "4.0"
 module MDV
   # Markdown viewer window class
   class MarkdownViewer
-    def initialize(file)
+    def initialize(win, file)
+      @win = win
       @document = Document.new(file)
       setup_gui
       reload
@@ -20,12 +21,7 @@ module MDV
 
     def connect_signals
       connect_key_press_event_signal
-      connect_destroy_signal
       connect_web_view_signals
-    end
-
-    def connect_destroy_signal
-      @win.signal_connect("destroy") { Gtk.main_quit }
     end
 
     def connect_key_press_event_signal
@@ -65,9 +61,6 @@ module MDV
     end
 
     def setup_gui
-      @win = Gtk::Window.new :toplevel
-      @win.set_default_geometry 700, 500
-
       @win.add scrolled_window
     end
 

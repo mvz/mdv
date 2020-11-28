@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.executables = ["mdv"]
 
+  spec.add_runtime_dependency "gir_ffi", "~> 0.15.7"
   spec.add_runtime_dependency "gir_ffi-gtk", "~> 0.15.0"
   spec.add_runtime_dependency "github-markdown", "~> 0.6.5"
   spec.add_runtime_dependency "github-markup", "~> 3.0"

@@ -3,13 +3,27 @@
 
 require "mdv"
 
-Gtk.init
+myapp = Gtk::Application.new("net.matijs.mdv",
+                             { handles_command_line: true,
+                               handles_open: true })
 
-WebKit2::WebContext.get_default.set_cache_model :document_viewer
+myapp.signal_connect "startup" do
+  WebKit2::WebContext.get_default.set_cache_model :document_viewer
+end
 
-file = ARGV[0]
-raise "Need file" unless file
+myapp.signal_connect "command-line" do |app, command_line|
+  _app_name, *file_names = command_line.arguments.to_a
+  files = file_names.map { |name| command_line.create_file_for_arg name }
+  app.open files, ""
+  0
+end
 
-MDV::MarkdownViewer.new file
+myapp.signal_connect "open" do |app, files|
+  files.each do |file|
+    filename = file.path
+    win = Gtk::ApplicationWindow.new app
+    MDV::MarkdownViewer.new win, filename
+  end
+end
 
-Gtk.main
+exit(myapp.run([$PROGRAM_NAME] + ARGV))
