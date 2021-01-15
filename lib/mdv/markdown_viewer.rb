@@ -45,6 +45,7 @@ module MDV
 
     def setup_gui
       @win.add scrolled_window
+      @win.set_default_size 700, 500
     end
 
     def connect_actions
