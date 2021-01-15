@@ -25,12 +25,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.executables = ["mdv"]
 
+  spec.add_runtime_dependency "gir_ffi", "~> 0.15.7"
   spec.add_runtime_dependency "gir_ffi-gtk", "~> 0.15.0"
   spec.add_runtime_dependency "github-markdown", "~> 0.6.5"
   spec.add_runtime_dependency "github-markup", "~> 3.0"
 
   spec.add_development_dependency "atspi_app_driver", "~> 0.7.0"
   spec.add_development_dependency "minitest", "~> 5.12"
+  spec.add_development_dependency "pry", "~> 0.13.1"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rake-manifest", "~> 0.2.0"
   spec.add_development_dependency "rubocop", "~> 1.8.0"

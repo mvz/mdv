@@ -8,46 +8,25 @@ GirFFI.setup :WebKit2, "4.0"
 module MDV
   # Markdown viewer window class
   class MarkdownViewer
-    def initialize(file)
+    def initialize(win, file)
+      @win = win
       @document = Document.new(file)
       setup_gui
+      connect_actions
       reload
       connect_signals
-      @win.show_all
     end
 
     private
 
     def connect_signals
-      connect_key_press_event_signal
-      connect_destroy_signal
       connect_web_view_signals
-    end
-
-    def connect_destroy_signal
-      @win.signal_connect("destroy") { Gtk.main_quit }
-    end
-
-    def connect_key_press_event_signal
-      @win.signal_connect "key-press-event" do |_wdg, evt, _ud|
-        handle_key(evt) if evt.state[:control_mask]
-        false
-      end
     end
 
     def connect_web_view_signals
       web_view.signal_connect("context-menu") { true }
       web_view.signal_connect("decide-policy") do |_wv, decision, decision_type|
         handle_decide_policy(decision, decision_type)
-      end
-    end
-
-    def handle_key(evt)
-      case evt.keyval
-      when "q".ord
-        @win.destroy
-      when "r".ord
-        reload
       end
     end
 
@@ -65,10 +44,14 @@ module MDV
     end
 
     def setup_gui
-      @win = Gtk::Window.new :toplevel
-      @win.set_default_geometry 700, 500
-
       @win.add scrolled_window
+      @win.set_default_size 700, 500
+    end
+
+    def connect_actions
+      reload_action = Gio::SimpleAction.new("reload", nil)
+      reload_action.signal_connect("activate") { reload }
+      @win.add_action reload_action
     end
 
     def scrolled_window
