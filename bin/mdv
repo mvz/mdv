@@ -16,17 +16,32 @@ end
 
 myapp.signal_connect "startup" do |app|
   WebKit2::WebContext.get_default.set_cache_model :document_viewer
+
   action = Gio::SimpleAction.new("quit", nil)
   action.signal_connect("activate") { app.quit }
   myapp.add_action action
+
   myapp.set_accels_for_action "app.quit", ["<Ctrl>Q"]
   myapp.set_accels_for_action "win.close", ["<Ctrl>W"]
   myapp.set_accels_for_action "win.reload", ["<Ctrl>R"]
+
+  # Add menu so Atspi has a way to access the actions
+  menu = Gio::Menu.new
+  file_menu = Gio::Menu.new
+  file_menu.append "Close Window", "win.close"
+  file_menu.append "Quit", "app.quit"
+  menu.append_submenu "File", file_menu
+  view_menu = Gio::Menu.new
+  view_menu.append "Reload", "win.reload"
+  menu.append_submenu "View", view_menu
+
+  myapp.menubar = menu
 end
 
 myapp.signal_connect "activate" do |app, _user_data|
   win = make_window(app)
   win.show_all
+  win.children.first.visible = false
 end
 
 myapp.signal_connect "open" do |app, files, _hint, _user_data|
@@ -35,6 +50,9 @@ myapp.signal_connect "open" do |app, files, _hint, _user_data|
     win = make_window(app)
     MDV::MarkdownViewer.new win, filename
     win.show_all
+
+    # This hides the menubar but keeps it available for Atspi
+    win.children.first.visible = false
   end
 end
 
