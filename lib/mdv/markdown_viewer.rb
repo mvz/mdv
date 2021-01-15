@@ -39,7 +39,7 @@ module MDV
 
     def handle_key(evt)
       case evt.keyval
-      when "q".ord
+      when "w".ord
         @win.destroy
       when "r".ord
         reload

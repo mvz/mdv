@@ -8,6 +8,10 @@ myapp = Gtk::Application.new("net.matijs.mdv",
 
 myapp.signal_connect "startup" do |app|
   WebKit2::WebContext.get_default.set_cache_model :document_viewer
+  action = Gio::SimpleAction.new("quit", nil)
+  action.signal_connect("activate") { app.quit }
+  myapp.add_action action
+  myapp.set_accels_for_action "app.quit", ["<Ctrl>Q"]
 end
 
 myapp.signal_connect "activate" do |app, _user_data|
