@@ -12,6 +12,7 @@ module MDV
       @win = win
       @document = Document.new(file)
       setup_gui
+      connect_actions
       reload
       connect_signals
     end
@@ -19,30 +20,13 @@ module MDV
     private
 
     def connect_signals
-      connect_key_press_event_signal
       connect_web_view_signals
-    end
-
-    def connect_key_press_event_signal
-      @win.signal_connect "key-press-event" do |_wdg, evt, _ud|
-        handle_key(evt) if evt.state[:control_mask]
-        false
-      end
     end
 
     def connect_web_view_signals
       web_view.signal_connect("context-menu") { true }
       web_view.signal_connect("decide-policy") do |_wv, decision, decision_type|
         handle_decide_policy(decision, decision_type)
-      end
-    end
-
-    def handle_key(evt)
-      case evt.keyval
-      when "w".ord
-        @win.destroy
-      when "r".ord
-        reload
       end
     end
 
@@ -61,6 +45,12 @@ module MDV
 
     def setup_gui
       @win.add scrolled_window
+    end
+
+    def connect_actions
+      reload_action = Gio::SimpleAction.new("reload", nil)
+      reload_action.signal_connect("activate") { reload }
+      @win.add_action reload_action
     end
 
     def scrolled_window

@@ -6,23 +6,33 @@ require "mdv"
 myapp = Gtk::Application.new("net.matijs.mdv",
                              { handles_open: true })
 
+def make_window(app)
+  win = Gtk::ApplicationWindow.new app
+  close_action = Gio::SimpleAction.new("close", nil)
+  close_action.signal_connect("activate") { win.destroy }
+  win.add_action close_action
+  win
+end
+
 myapp.signal_connect "startup" do |app|
   WebKit2::WebContext.get_default.set_cache_model :document_viewer
   action = Gio::SimpleAction.new("quit", nil)
   action.signal_connect("activate") { app.quit }
   myapp.add_action action
   myapp.set_accels_for_action "app.quit", ["<Ctrl>Q"]
+  myapp.set_accels_for_action "win.close", ["<Ctrl>W"]
+  myapp.set_accels_for_action "win.reload", ["<Ctrl>R"]
 end
 
 myapp.signal_connect "activate" do |app, _user_data|
-  win = Gtk::ApplicationWindow.new app
+  win = make_window(app)
   win.show_all
 end
 
 myapp.signal_connect "open" do |app, files, _hint, _user_data|
   files.each do |file|
     filename = file.path
-    win = Gtk::ApplicationWindow.new app
+    win = make_window(app)
     MDV::MarkdownViewer.new win, filename
     win.show_all
   end
