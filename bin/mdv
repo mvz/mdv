@@ -10,11 +10,17 @@ myapp.signal_connect "startup" do |app|
   WebKit2::WebContext.get_default.set_cache_model :document_viewer
 end
 
+myapp.signal_connect "activate" do |app, _user_data|
+  win = Gtk::ApplicationWindow.new app
+  win.show_all
+end
+
 myapp.signal_connect "open" do |app, files, _hint, _user_data|
   files.each do |file|
     filename = file.path
     win = Gtk::ApplicationWindow.new app
     MDV::MarkdownViewer.new win, filename
+    win.show_all
   end
 end
 

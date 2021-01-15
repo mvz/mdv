@@ -14,7 +14,6 @@ module MDV
       setup_gui
       reload
       connect_signals
-      @win.show_all
     end
 
     private
