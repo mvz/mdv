@@ -20,12 +20,13 @@ describe "The MDV application" do
     @driver.boot("README.md")
   end
 
-  # it "starts and can be quit" do
-  #   sleep 1
-  #
-  #   status = @driver.cleanup
-  #   _(status.exitstatus).must_equal 0
-  # end
+  it "starts and can be quit" do
+    frame = @driver.frame
+    frame.find_role(:menu_item, /Quit/).do_action 0
+
+    status = @driver.cleanup
+    _(status.exitstatus).must_equal 0
+  end
 
   after do
     @driver.cleanup
