@@ -1,5 +1,11 @@
 # Change log
 
+## 0.6.0 / 2021-01-17
+
+* Drop support for Ruby 2.4
+* Support Ruby 2.7 and 3.0
+* Implement as a Gtk::Application
+
 ## 0.5.1 / 2019-11-03
 
 * Fix navigation signal handler that would cause program to abort just after
