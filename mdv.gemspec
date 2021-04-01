@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "gir_ffi", "~> 0.15.7"
   spec.add_runtime_dependency "gir_ffi-gtk", "~> 0.15.0"
   spec.add_runtime_dependency "github-markdown", "~> 0.6.5"
-  spec.add_runtime_dependency "github-markup", "~> 3.0"
+  spec.add_runtime_dependency "github-markup", ">= 3", "< 5"
 
   spec.add_development_dependency "atspi_app_driver", "~> 0.7.0"
   spec.add_development_dependency "minitest", "~> 5.12"
