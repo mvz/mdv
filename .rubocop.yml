@@ -9,6 +9,9 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 2.5
 
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
 # Make BeginEndAlignment behavior match EndAlignment
 Layout/BeginEndAlignment:
   EnforcedStyleAlignWith: begin
@@ -35,6 +38,11 @@ Layout/MultilineOperationIndentation:
 Layout/SpaceBeforeBlockBraces:
   EnforcedStyleForEmptyBraces: space
 
+# Use standardrb style hash literals
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+  EnforcedStyleForEmptyBraces: no_space
+
 # Assume the programmer knows how bracketed block syntax works
 Lint/AmbiguousBlockAssociation:
   Enabled: false
@@ -54,6 +62,10 @@ Performance/StartWith:
 Style/AndOr:
   EnforcedStyle: conditionals
 
+# Use standardrb style empty methods
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
 # Require at least two dependent lines before suggesting a guard clause
 Style/GuardClause:
   MinBodyLength: 2
@@ -62,18 +74,16 @@ Style/GuardClause:
 Style/Next:
   Enabled: false
 
-# Use older RuboCop default
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%W': ()
-    '%w': ()
-
 # Allow explicit return with multiple return values
 Style/RedundantReturn:
   AllowMultipleReturnValues: true
 
 # Do not commit to use of interpolation
 Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Make quoting outside and inside interpolation consistent
+Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
 # Prefer symbols to look like symbols
