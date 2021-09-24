@@ -3,8 +3,7 @@
 
 require "mdv"
 
-myapp = Gtk::Application.new("net.matijs.mdv",
-                             { handles_open: true })
+myapp = Gtk::Application.new("net.matijs.mdv", handles_open: true)
 
 def make_window(app)
   win = Gtk::ApplicationWindow.new app
