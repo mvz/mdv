@@ -17,43 +17,43 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7, "3.0"]
+        ruby: [2.6, 2.7, "3.0"]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install non-ruby dependencies
-      run: |
-        # Needed to avoid packages not being found sometimes
-        sudo apt-get update
-        # Provides libgirepository-1.0.so.1
-        sudo apt-get install libgirepository-1.0-1
-        # Provides Atspi-2.0.typelib
-        sudo apt-get install gir1.2-atspi-2.0
-        # Provides A11y services used by atspi_app_driver to drive SUT
-        sudo apt-get install at-spi2-core
-        # GIR data for GtkWebkit 4
-        sudo apt-get install gir1.2-webkit2-4.0 --no-install-recommends
-        # Provides xvfb-run
-        sudo apt-get install xvfb
+      - uses: actions/checkout@v2
+      - name: Install non-ruby dependencies
+        run: |
+          # Needed to avoid packages not being found sometimes
+          sudo apt-get update
+          # Provides libgirepository-1.0.so.1
+          sudo apt-get install libgirepository-1.0-1
+          # Provides Atspi-2.0.typelib
+          sudo apt-get install gir1.2-atspi-2.0
+          # Provides A11y services used by atspi_app_driver to drive SUT
+          sudo apt-get install at-spi2-core
+          # GIR data for GtkWebkit 4
+          sudo apt-get install gir1.2-webkit2-4.0 --no-install-recommends
+          # Provides xvfb-run
+          sudo apt-get install xvfb
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Run tests in a dbus session
-      run: xvfb-run dbus-run-session bundle exec rake
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run tests in a dbus session
+        run: xvfb-run dbus-run-session bundle exec rake
 
   rubocop:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
-        bundler-cache: true
-    - name: Run RuboCop
-      run: bundle exec rubocop -P
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - name: Run RuboCop
+        run: bundle exec rubocop -P
