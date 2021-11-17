@@ -3,6 +3,7 @@
 Gem::Specification.new do |spec|
   spec.name = "mdv"
   spec.version = "0.6.0"
+
   spec.authors = ["Matijs van Zuijlen"]
   spec.email = ["matijs@matijs.net"]
 
@@ -18,8 +19,10 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/mvz/mdv"
   spec.metadata["changelog_uri"] = "https://github.com/mvz/mdv/blob/master/Changelog.md"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.files = File.read("Manifest.txt").split
+
   spec.rdoc_options = ["--main", "README.md"]
   spec.extra_rdoc_files = ["Changelog.md", "README.md"]
   spec.require_paths = ["lib"]
@@ -35,7 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.14.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rake-manifest", "~> 0.2.0"
-  spec.add_development_dependency "rubocop", "~> 1.22.0"
+  spec.add_development_dependency "rubocop", "~> 1.23.0"
   spec.add_development_dependency "rubocop-minitest", "~> 0.16.0"
   spec.add_development_dependency "rubocop-packaging", "~> 0.5.0"
   spec.add_development_dependency "rubocop-performance", "~> 1.12.0"
