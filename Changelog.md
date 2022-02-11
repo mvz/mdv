@@ -1,5 +1,11 @@
 # Change log
 
+## 0.7.0 / 2022-02-11
+
+* Drop support for Ruby 2.5
+* Support Ruby 3.1
+* Update dependencies to allow github-markup version 4.0
+
 ## 0.6.0 / 2021-01-17
 
 * Drop support for Ruby 2.4
