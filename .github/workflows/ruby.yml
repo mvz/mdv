@@ -29,6 +29,8 @@ jobs:
           sudo apt-get update
           # Provides libgirepository-1.0.so.1
           sudo apt-get install libgirepository-1.0-1
+          # BUG: Missing dependency of gir1.2-harfbuzz-0.0
+          sudo apt-get install libharfbuzz-gobject0
           # Provides Atspi-2.0.typelib
           sudo apt-get install gir1.2-atspi-2.0
           # Provides A11y services used by atspi_app_driver to drive SUT
