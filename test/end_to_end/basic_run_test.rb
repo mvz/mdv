@@ -6,11 +6,11 @@ require "atspi_app_driver"
 # Test driver for the MDV application.
 class MDVDriver < AtspiAppDriver
   def initialize
-    super "mdv"
+    super("mdv")
   end
 
   def boot(filename)
-    super arguments: [filename]
+    super(arguments: [filename])
   end
 end
 
