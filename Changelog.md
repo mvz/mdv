@@ -1,5 +1,20 @@
 # Change log
 
+## 0.8.0 / 2024-01-01
+
+* Support Ruby 3.0 through 3.3, dropping support for 2.6 and 2.7
+  ([#70], [#81] and [#96] by [mvz])
+* Update GirFFI and GirFFI-Gtk dependencies to version 0.17.0
+  ([#71] and [#97] by [mvz])
+
+[mvz]: https://github.com/mvz
+
+[#70]: https://github.com/mvz/mdv/pull/70
+[#71]: https://github.com/mvz/mdv/pull/71
+[#81]: https://github.com/mvz/mdv/pull/81
+[#96]: https://github.com/mvz/mdv/pull/96
+[#97]: https://github.com/mvz/mdv/pull/97
+
 ## 0.7.0 / 2022-02-11
 
 * Drop support for Ruby 2.5
