@@ -1,5 +1,11 @@
 # Change log
 
+## 0.8.1 / 2024-01-01
+
+* Switch to commonmarker as the Markdown renderer ([#98] by [mvz])
+
+[#98]: https://github.com/mvz/mdv/pull/98
+
 ## 0.8.0 / 2024-01-01
 
 * Support Ruby 3.0 through 3.3, dropping support for 2.6 and 2.7
