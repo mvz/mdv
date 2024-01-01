@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "github/markup"
+require "commonmarker"
 
 module MDV
   # Markdown document class
@@ -14,7 +14,10 @@ module MDV
     end
 
     def html
-      GitHub::Markup.render(fullpath, File.read(fullpath))
+      content = File.read(fullpath)
+      commonmarker_opts = [:GITHUB_PRE_LANG]
+      commonmarker_exts = [:tagfilter, :autolink, :table, :strikethrough]
+      CommonMarker.render_html(content, commonmarker_opts, commonmarker_exts)
     end
 
     private
