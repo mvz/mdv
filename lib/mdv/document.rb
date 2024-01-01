@@ -15,9 +15,15 @@ module MDV
 
     def html
       content = File.read(fullpath)
-      commonmarker_opts = [:GITHUB_PRE_LANG]
-      commonmarker_exts = [:tagfilter, :autolink, :table, :strikethrough]
-      CommonMarker.render_html(content, commonmarker_opts, commonmarker_exts)
+      Commonmarker.to_html(content,
+        options: {
+          render: {hardbreaks: false},
+          extension: {tagfilter: true,
+                      autolink: true,
+                      table: true,
+                      strikethrough: true}
+        },
+        plugins: {})
     end
 
     private

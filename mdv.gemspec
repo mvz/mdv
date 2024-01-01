@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.rdoc_options = ["--main", "README.md"]
   spec.extra_rdoc_files = ["Changelog.md", "README.md"]
 
-  spec.add_runtime_dependency "commonmarker", "~> 0.23.10"
+  spec.add_runtime_dependency "commonmarker", "~> 1.0"
   spec.add_runtime_dependency "gir_ffi", "~> 0.17.0"
   spec.add_runtime_dependency "gir_ffi-gtk", "~> 0.17.0"
 
