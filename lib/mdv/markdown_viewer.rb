@@ -3,7 +3,11 @@
 require "gir_ffi-gtk3"
 require "mdv/document"
 
-GirFFI.setup :WebKit2, "4.0"
+begin
+  GirFFI.setup :WebKit2, "4.0"
+rescue RuntimeError
+  GirFFI.setup :WebKit2, "4.1"
+end
 
 module MDV
   # Markdown viewer window class
