@@ -1,5 +1,15 @@
 # Change log
 
+## 0.9.0 / 2024-05-17
+
+* Support Ruby 3.1 through 3.3, dropping support for 3.0 ([#100] by [mvz])
+* Update to commonmarker 1.0 ([#101] by [mvz])
+* Support WebKit2 version 4.1 in addition to 4.0 ([#103] by [mvz])
+
+[#100]: https://github.com/mvz/mdv/pull/100
+[#101]: https://github.com/mvz/mdv/pull/101
+[#103]: https://github.com/mvz/mdv/pull/103
+
 ## 0.8.1 / 2024-01-01
 
 * Switch to commonmarker as the Markdown renderer ([#98] by [mvz])
