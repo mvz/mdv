@@ -29,12 +29,13 @@ Gem::Specification.new do |spec|
   spec.rdoc_options = ["--main", "README.md"]
   spec.extra_rdoc_files = ["Changelog.md", "README.md"]
 
-  spec.add_dependency "commonmarker", "~> 1.0"
+  spec.add_dependency "commonmarker", "~> 2.0"
   spec.add_dependency "gir_ffi", "~> 0.17.0"
   spec.add_dependency "gir_ffi-gtk", "~> 0.17.0"
 
   spec.add_development_dependency "atspi_app_driver", "~> 0.9.0"
   spec.add_development_dependency "minitest", "~> 5.12"
+  spec.add_development_dependency "minitest-focus", "~> 1.4"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rake-manifest", "~> 0.2.0"
   spec.add_development_dependency "rubocop", "~> 1.51"

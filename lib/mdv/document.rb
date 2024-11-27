@@ -16,13 +16,12 @@ module MDV
     def html
       content = File.read(fullpath)
       Commonmarker.to_html(content,
-        options: {
-          render: {hardbreaks: false},
-          extension: {tagfilter: true,
-                      autolink: true,
-                      table: true,
-                      strikethrough: true}
-        },
+        options: {render: {hardbreaks: false},
+                  extension: {tagfilter: true,
+                              autolink: true,
+                              table: true,
+                              strikethrough: true,
+                              header_ids: nil}},
         plugins: {})
     end
 
