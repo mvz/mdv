@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "atspi_app_driver", "~> 0.9.0"
   spec.add_development_dependency "minitest", "~> 5.12"
+  spec.add_development_dependency "minitest-focus", "~> 1.4"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rake-manifest", "~> 0.2.0"
   spec.add_development_dependency "rubocop", "~> 1.51"
