@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
     Quickly view markdown files on GNOME
   DESC
   spec.homepage = "http://www.github.com/mvz/mdv"
+
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
