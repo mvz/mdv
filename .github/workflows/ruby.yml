@@ -37,7 +37,7 @@ jobs:
           # Provides A11y services used by atspi_app_driver to drive SUT
           sudo apt-get install at-spi2-core
           # GIR data for GtkWebkit 4
-          sudo apt-get install gir1.2-webkit2-4.0 --no-install-recommends
+          sudo apt-get install gir1.2-webkit2-4.1 --no-install-recommends
           # Provides xvfb-run
           sudo apt-get install xvfb
 
