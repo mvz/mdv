@@ -1,5 +1,16 @@
 # Change log
 
+## 0.9.1 / 2025-05-25
+
+* Replace soft-deprecated runtime dependency specification ([#105] by [mvz])
+* Upgrade commonmarker dependency to 2.0 ([#109] by [mvz])
+* Officially support Ruby 3.4 ([#110] by [mvz])
+* Update GirFFI and GirFFI-Gtk dependencies to version 0.18.0 ([#113] by [mvz])
+
+[#105]: https://github.com/mvz/mdv/pull/105
+[#109]: https://github.com/mvz/mdv/pull/109
+[#113]: https://github.com/mvz/mdv/pull/113
+
 ## 0.9.0 / 2024-05-17
 
 * Support Ruby 3.1 through 3.3, dropping support for 3.0 ([#100] by [mvz])

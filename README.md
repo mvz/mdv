@@ -52,5 +52,5 @@ on GitHub.
 
 ## License
 
-Copyright &copy; 2012&ndash;2024 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2012&ndash;2025 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.
