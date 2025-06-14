@@ -25,6 +25,7 @@ describe "The MDV application" do
     frame.find_role(:menu_item, /Quit/).do_action 0
 
     status = @driver.cleanup
+
     _(status.exitstatus).must_equal 0
   end
 

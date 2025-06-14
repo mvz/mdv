@@ -2,7 +2,7 @@ inherit_mode:
   merge:
     - Exclude
 
-require:
+plugins:
   - rubocop-minitest
   - rubocop-packaging
   - rubocop-performance
@@ -60,6 +60,10 @@ Lint/AmbiguousOperatorPrecedence:
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
+
+# This cop has too many false positives
+Naming/PredicateMethod:
+  Enabled: false
 
 Performance/StartWith:
   AutoCorrect: true
