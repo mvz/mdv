@@ -61,6 +61,10 @@ Lint/AmbiguousOperatorPrecedence:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
+# This cop has too many false positives
+Naming/PredicateMethod:
+  Enabled: false
+
 Performance/StartWith:
   AutoCorrect: true
 
