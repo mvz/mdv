@@ -59,8 +59,8 @@ module MDV
     end
 
     def scrolled_window
-      @scrolled_window ||= Gtk::ScrolledWindow.new(nil, nil).tap do |it|
-        it.add web_view
+      @scrolled_window ||= Gtk::ScrolledWindow.new(nil, nil).tap do |win|
+        win.add web_view
       end
     end
 
