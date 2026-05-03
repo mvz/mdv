@@ -31,6 +31,6 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = ["Changelog.md", "README.md"]
 
   spec.add_dependency "commonmarker", "~> 2.0"
-  spec.add_dependency "gir_ffi", "~> 0.18.0"
-  spec.add_dependency "gir_ffi-gtk", "~> 0.18.0"
+  spec.add_dependency "gir_ffi", "~> 0.19.0"
+  spec.add_dependency "gir_ffi-gtk", "~> 0.19.0"
 end
