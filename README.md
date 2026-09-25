@@ -4,7 +4,7 @@ Simple Markdown Viewer for GNOME 3.
 
 ## Usage
 
-```
+```sh
 mdv README.md
 ```
 
@@ -13,7 +13,7 @@ links open in default browser.
 
 ## Install
 
-```
+```sh
 gem install mdv
 ```
 
@@ -23,25 +23,25 @@ MDV depends on the `gir_ffi-gtk` gem. Additionally, you need to install the
 WebKit2 Gtk library and its gobject-introspection information. On Debian and
 Ubuntu, one of the following should work:
 
-```
+```sh
 sudo apt-get install gir1.2-webkit2-4.0
 ```
 
 or
 
-```
+```sh
 sudo apt-get install gir1.2-webkit2-4.1
 ```
 
 On Ubuntu, you may also have to install two additional packages:
 
-```
+```sh
 sudo apt-get install libwebkit2gtk-4.0-dev libjavascriptcoregtk-4.0-dev
 ```
 
 or
 
-```
+```sh
 sudo apt-get install libwebkit2gtk-4.1-dev libjavascriptcoregtk-4.1-dev
 ```
 
@@ -52,5 +52,5 @@ on GitHub.
 
 ## License
 
-Copyright &copy; 2012&ndash;2025 [Matijs van Zuijlen](http://www.matijs.net).
+Copyright &copy; 2012&ndash;2026 [Matijs van Zuijlen](http://www.matijs.net).
 See LICENSE for details.

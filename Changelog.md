@@ -1,5 +1,16 @@
 # Change log
 
+## 0.10.0 / 2026-09-25
+
+* Support Ruby 3.3 through 4.0, dropping support for 3.1 and 3.2
+  ([#120], [#125] and [#130] by [mvz])
+* Update GirFFI and GirFFI-Gtk dependencies to version 0.19.0 ([#128] by [mvz])
+
+[#120]: https://github.com/mvz/mdv/pull/120
+[#125]: https://github.com/mvz/mdv/pull/125
+[#128]: https://github.com/mvz/mdv/pull/128
+[#130]: https://github.com/mvz/mdv/pull/130
+
 ## 0.9.1 / 2025-05-25
 
 * Replace soft-deprecated runtime dependency specification ([#105] by [mvz])
