@@ -9,7 +9,7 @@ group :development, :test do
   gem "rake", "~> 13.0"
   gem "rake-manifest", "~> 0.2.0"
   gem "rubocop", "~> 1.79"
-  gem "rubocop-minitest", "~> 0.40.0"
+  gem "rubocop-minitest", "~> 0.41.0"
   gem "rubocop-packaging", "~> 0.6.0"
   gem "rubocop-performance", "~> 1.25"
   gem "simplecov", "~> 1.3.0"
